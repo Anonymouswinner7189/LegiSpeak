@@ -13,7 +13,7 @@ const path = require('path');
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 import("node-fetch").then((nodeFetch) => {
@@ -36,17 +36,17 @@ app.use(
 
 app.set("view engine","ejs");
 
-mongoose.connect("mongodb://localhost:27017/SIHDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/SIHDB", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
-const ocrSchema = new mongoose.Schema({
-    text: String,
-});
+// const ocrSchema = new mongoose.Schema({
+//     text: String,
+// });
 
-const OcrModel = mongoose.model("Ocr", ocrSchema);
-const Simplified = mongoose.model("Ocr", ocrSchema);
+// const OcrModel = mongoose.model("Ocr", ocrSchema);
+// const Simplified = mongoose.model("Ocr", ocrSchema);
 
 const storage = multer.memoryStorage(); // Store file in memory
 const upload = multer({ storage: storage });
