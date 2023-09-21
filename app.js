@@ -13,7 +13,7 @@ const path = require('path');
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 import("node-fetch").then((nodeFetch) => {
@@ -89,10 +89,10 @@ app.post("/upload", upload.single("file"), (req, res) => {
         const chatCompletion = await openai.chat.completions.create({
           model: "gpt-3.5-turbo",
           messages: [{ role: "user", content: prompt + "\n" + userInput }],
-          max_tokens: 100,
+          max_tokens: 1000,
         });
       
-        res.render("list",{summary : chatCompletion.choices[0].message.content});
+        res.render("list",{title: "Summarized Document",summary : chatCompletion.choices[0].message.content});
       };
 
       fun(data);
@@ -103,6 +103,57 @@ app.post("/upload", upload.single("file"), (req, res) => {
       res.status(500).send("Error during processing.");
     });
 });
+
+app.post("/translate", upload.single("file"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send("No file uploaded.");
+  }
+
+  const api =
+    "https://script.google.com/macros/s/AKfycbxWmRtGosjGT-vFXTJ96dOVGhh8t-bD9FlxgO3pn1EwQKNHAn9ozO2mq5x5xTgqa6py/exec";
+
+  const fileData = req.file.buffer.toString("base64");
+
+  const lang = req.body.lang;
+
+  fetch(api, {
+    method: "POST",
+    body: JSON.stringify({
+      file: fileData,
+      type: req.file.mimetype,
+      name: req.file.originalname,
+    }),
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      // const ocrResult = new OcrModel({ text: data });
+      // ocrResult.save();
+      const fun = async (data) => {
+        const prompt =
+          "Convert the given text into "+lang+" as it is without adding any additional information and format it if its raw.The output u give should only be in "+lang+" dont mention anythong else .";
+      
+        // const prompt = "Simplify the sentences of this given text.Summarise in 250 words."
+      
+        const userInput = data;
+      
+        const chatCompletion = await openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: prompt + "\n" + userInput }],
+          max_tokens: 1000,
+        });
+      
+        res.render("list",{title: "Translated Document",summary : chatCompletion.choices[0].message.content});
+      };
+
+      fun(data);
+
+    })
+    .catch((error) => {
+      console.error("Error during OCR : ", error);
+      res.status(500).send("Error during processing.");
+    });
+});
+
 
 app.post("/templates",(req,res)=>{
     res.sendFile("/public/templates.html", { root: __dirname });

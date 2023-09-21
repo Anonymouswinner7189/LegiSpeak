@@ -1,23 +1,20 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-/* Style for the "Learn more" button */
-.btn--text {
-    display: inline-block;
-    background: none;
-    font-size: 1.7rem;
-    font-family: inherit;
-    font-weight: 500;
-    color: black;
-    border: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-.btn--text:hover {
-    color: #B4B4B3;
-}
+body {
+    background: #E3F2FD;
+  }
+
+  /* Styles for sticky header */
+header.sticky-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white; /* Adjust as needed */
+    z-index: 100;
+    transition: background-color 0.3s ease; /* Optional: Add a smooth background color transition */
+  }
+  
+  /* Adjust the header appearance when it's sticky */
+  header.sticky-header a {
+    color: #333; /* Change link color when sticky if needed */
+    /* Add any other styles you want for the sticky header */
+  }
+  
