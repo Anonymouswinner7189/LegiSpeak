@@ -6,10 +6,14 @@ const OpenAI = require("openai");
 const dotenv = require("dotenv");
 const readlineSync = require("readline-sync");
 const colors = require("colors");
+const { PDFDocument } = require('pdf-lib');
+const { readFile, writeFile } = require('fs').promises;
+const cors = require("cors");
+const path = require('path');
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 import("node-fetch").then((nodeFetch) => {
@@ -18,7 +22,18 @@ import("node-fetch").then((nodeFetch) => {
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.static('views'));
+app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
+
 app.set("view engine","ejs");
 
 mongoose.connect("mongodb://localhost:27017/SIHDB", {
@@ -95,6 +110,81 @@ app.post("/templates",(req,res)=>{
 
 app.post("/will",(req,res)=>{
     res.sendFile("/public/registration.html", { root: __dirname });
+});
+
+app.post("/fill",(req,res)=>{
+  const name1 = req.body.name1;
+  const name2 = req.body.name2;
+  const name3 = req.body.name3;
+  const name4 = req.body.name4;
+  const name5 = req.body.name5;
+  const name6 = req.body.name6;
+  const name7 = req.body.name7;
+  const name8 = req.body.name8;
+  const name9 = req.body.name9;
+  const name10 = req.body.name10;
+  const name11 = req.body.name11;
+  const name12 = req.body.name12;
+  const name13 = req.body.name13;
+  const name14 = req.body.name14;
+
+  async function createPdf(input, output, data) {
+    try {
+      const pdfDoc = await PDFDocument.load(await readFile(input));
+      const form = pdfDoc.getForm();
+      const nf = 14;
+    
+      for (let i = 1; i <= nf; i++) {
+        form.getTextField(i.toString()).setText(data['name' + i]);
+      }
+
+      const pdfBytes = await pdfDoc.save();
+  
+      await writeFile(output, pdfBytes);
+      console.log('PDF created!');
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  try {
+    const outputPdfBuffer = createPdf('will(1).pdf', 'output.pdf', {
+      name1,
+      name2,
+      name3,
+      name4,
+      name5,
+      name6,
+      name7,
+      name8,
+      name9,
+      name10,
+      name11,
+      name12,
+      name13,
+      name14,
+    });
+
+    res.status(200).send('PDF created successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('PDF creation failed');
+  }
+
+});
+
+app.get("/download",(req,res)=>{
+  const filePath = path.join(__dirname, '/', 'output.pdf');
+  res.download(filePath, (err) => {
+    if (err) {
+      // Handle errors, such as file not found
+      console.error(`Error downloading the file: ${err.message}`);
+      res.status(404).send('File not found');
+    } else {
+      console.log('File downloaded successfully');
+    }
+  });
 });
 
 app.listen(3000, () => {

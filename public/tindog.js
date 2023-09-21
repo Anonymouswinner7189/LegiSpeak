@@ -21,6 +21,8 @@ btnScrollTo.addEventListener('click', function (e) {
 
 ///////////////////////////////////////
 //CHATBOT
+const chatHistory = [];
+
 const chatbotToggler = document.querySelector(".chatbot-toggler");
 const closeBtn = document.querySelector(".close-btn");
 const chatbox = document.querySelector(".chatbox");
@@ -28,7 +30,7 @@ const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
 let userMessage = null; // Variable to store user's message
-const API_KEY = "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"; // Paste your API key here
+const API_KEY = "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"; // Paste your API key here
 const inputInitHeight = chatInput.scrollHeight;
 
 const createChatLi = (message, className) => {
@@ -42,11 +44,15 @@ const createChatLi = (message, className) => {
 }
 
 const generateResponse = (chatElement) => {
+
     const API_URL = "https://api.openai.com/v1/chat/completions";
     const messageElement = chatElement.querySelector("p");
 
+    const messages = [...chatHistory, { role: "user", content: userMessage }];
+
     // Define the properties and message for the API request
     const requestOptions = {
+
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -54,7 +60,7 @@ const generateResponse = (chatElement) => {
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: userMessage}],
+            messages: messages,
         })
     }
 
@@ -70,6 +76,8 @@ const generateResponse = (chatElement) => {
 const handleChat = () => {
     userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
     if(!userMessage) return;
+
+    chatHistory.push({ role: "user", content: userMessage });
 
     // Clear the input textarea and set its height to default
     chatInput.value = "";

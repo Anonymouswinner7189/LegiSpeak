@@ -8,122 +8,172 @@
     <!--<title>Registration Form in HTML CSS</title>-->
     <!---Custom CSS File--->
     <link rel="stylesheet" href="registration.css" />
-    
   </head>
   <body>
     <section class="container">
       <header>Will Agreement</header>
-      <form action="#" class="form" >
-
+      <form action="/fill" method="post" class="form">
         <div class="input-box">
           <label>Full Name</label>
-          <input type="text" placeholder="Enter full name" required />
+          <input
+            type="text"
+            id="name1"
+            name="name1"
+            placeholder="Enter full name"
+            required
+          />
         </div>
 
         <div class="input-box">
           <label>Father's Name</label>
-          <input type="text" placeholder="Enter Father's Name" required />
+          <input
+            type="text"
+            id="name2"
+            placeholder="Enter Father's Name"
+            required
+          />
         </div>
 
         <div class="input-box address">
           <label>Your address</label>
-          <input type="text" placeholder="Enter your address" required />
+          <input
+            type="text"
+            id="name3"
+            placeholder="Enter your address"
+            required
+          />
         </div>
 
-       
         <div class="input-box">
           <label>Your Age</label>
-          <input type="number" placeholder="Enter Age" required />
+          <input type="number" id="name4" placeholder="Enter Age" required />
         </div>
-        
+
         <div class="input-box">
           <label>Name of the executor of the will</label>
-          <input type="text" placeholder="Enter Name of the executor of the will" required />
+          <input
+            type="text"
+            id="name5"
+            placeholder="Enter Name of the executor of the will"
+            required
+          />
         </div>
-       
+
         <div class="input-box">
           <label>Name of the parent of the executor </label>
-          <input type="text" placeholder="Name of the parent of the executor " required />
+          <input
+            type="text"
+            id="name6"
+            placeholder="Name of the parent of the executor "
+            required
+          />
         </div>
 
         <div class="input-box address">
           <label>Executor address</label>
-          <input type="text" placeholder="Enter executor's address" required />
+          <input
+            type="text"
+            id="name7"
+            placeholder="Enter executor's address"
+            required
+          />
         </div>
 
         <div class="input-box">
           <label>Executer Age</label>
-          <input type="number" placeholder="Enter executer's Age" required />
+          <input
+            type="number"
+            id="name8"
+            placeholder="Enter executer's Age"
+            required
+          />
         </div>
-    <div class="column">
-      <label>Enter the properties that are to be inherited </label>
-        <div class="input-box">
-          <label>(a)</label>
-          <input type="text" placeholder="Enter property" required />
-      </div>
-      <div class="input-box">
-          <label>(b)</label>
-          <input type="text" placeholder="Enter property"  >
-      </div>
-      <div class="input-box">
-          <label>(c)</label>
-          <input type="text" placeholder="Enter property">
-      </div>
-    
-    </div>
-      <div class="input-box">
-        <label>Your Wife Name</label>
-        <input type="text" placeholder="Enter Your Wife's Name" required />
-      </div>
-
-      <div class="column">
-        <label>Name of your children </label>
+        <div class="column">
+          <label>Enter the properties that are to be inherited </label>
           <div class="input-box">
             <label>(a)</label>
-            <input type="text" placeholder="Enter blank(-) if you would like to leave the field empty" required />
+            <input
+              type="text"
+              id="name9"
+              placeholder="Enter property"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label>(b)</label>
+            <input type="text" id="name10" placeholder="Enter property" />
+          </div>
+          <div class="input-box">
+            <label>(c)</label>
+            <input type="text" id="name11" placeholder="Enter property" />
+          </div>
         </div>
         <div class="input-box">
-            <label>(b)</label>
-            <input type="text" placeholder="Enter blank(-) if you would like to leave the field empty" >
+          <label>Your Wife Name</label>
+          <input
+            type="text"
+            id="name12"
+            placeholder="Enter Your Wife's Name"
+            required
+          />
         </div>
-       
-      
-      </div>
 
-        <button id="submitBtn">Submit</button>
-        <button id="downloadBtn" class="hidden">Download</button>
+        <div class="column">
+          <label>Name of your children </label>
+          <div class="input-box">
+            <label>(a)</label>
+            <input
+              type="text"
+              id="name13"
+              placeholder="Enter blank(-) if you would like to leave the field empty"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label>(b)</label>
+            <input
+              type="text"
+              id="name14"
+              placeholder="Enter blank(-) if you would like to leave the field empty"
+            />
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn">Submit</button>
+        
       </form>
-      
+      <form action="/download" method="get" class="form">
+        <button type="submit" id="downloadBtn" class="hidden">Download</button>
+      </form>
     </section>
 
-    <script>
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
-          const submitBtn = document.getElementById("submitBtn");
-          const downloadBtn = document.getElementById("downloadBtn");
+        const submitBtn = document.getElementById("submitBtn");
+        const downloadBtn = document.getElementById("downloadBtn");
 
-          submitBtn.addEventListener("click", function (e) {
-              e.preventDefault();
+        submitBtn.addEventListener("click", function (e) {
+          e.preventDefault();
 
-              // Check if all fields are filled
-              const allInputs = document.querySelectorAll("input");
-              let allFieldsFilled = true;
+          // Check if all fields are filled
+          const allInputs = document.querySelectorAll("input");
+          let allFieldsFilled = true;
 
-              allInputs.forEach(function (input) {
-                  if (input.value.trim() === "") {
-                      allFieldsFilled = false;
-                  }
-              });
-
-              if (allFieldsFilled) {
-                  // All fields are filled, show the Download button
-                  downloadBtn.classList.remove("hidden");
-              } else {
-                  // Not all fields are filled, display an alert or take other action
-                  alert("Please fill in all fields.");
-              }
+          allInputs.forEach(function (input) {
+            if (input.value.trim() === "") {
+              allFieldsFilled = false;
+            }
           });
+
+          if (allFieldsFilled) {
+            // All fields are filled, show the Download button
+            downloadBtn.classList.remove("hidden");
+          } else {
+            // Not all fields are filled, display an alert or take other action
+            alert("Please fill in all fields.");
+          }
+        });
       });
-  </script>
-    
+    </script> -->
   </body>
 </html>
