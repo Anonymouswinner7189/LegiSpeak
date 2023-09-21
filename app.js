@@ -13,7 +13,7 @@ const path = require('path');
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 import("node-fetch").then((nodeFetch) => {
