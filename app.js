@@ -13,7 +13,7 @@ const path = require('path');
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 import("node-fetch").then((nodeFetch) => {
@@ -112,7 +112,15 @@ app.post("/will",(req,res)=>{
     res.sendFile("/public/registration.html", { root: __dirname });
 });
 
-app.post("/fill",(req,res)=>{
+app.post("/rental",(req,res)=>{
+    res.sendFile("/public/rental_agreement.html", { root: __dirname });
+});
+
+app.post("/nda",(req,res)=>{
+    res.sendFile("/public/nda.html", { root: __dirname });
+});
+
+app.post("/fill1",(req,res)=>{
   const name1 = req.body.name1;
   const name2 = req.body.name2;
   const name3 = req.body.name3;
@@ -149,7 +157,7 @@ app.post("/fill",(req,res)=>{
   }
 
   try {
-    const outputPdfBuffer = createPdf('will(1).pdf', 'output.pdf', {
+    const outputPdfBuffer = createPdf('WillAgreement.pdf', 'output1.pdf', {
       name1,
       name2,
       name3,
@@ -174,8 +182,136 @@ app.post("/fill",(req,res)=>{
 
 });
 
-app.get("/download",(req,res)=>{
-  const filePath = path.join(__dirname, '/', 'output.pdf');
+app.post("/fill2",(req,res)=>{
+  const name1 = req.body.name1;
+  const name2 = req.body.name2;
+  const name3 = req.body.name3;
+  const name4 = req.body.name4;
+  const name5 = req.body.name5;
+  const name6 = req.body.name6;
+  const name7 = req.body.name7;
+  const name8 = req.body.name8;
+  const name9 = req.body.name9;
+  const name10 = req.body.name10;
+
+  async function createPdf(input, output, data) {
+    try {
+      const pdfDoc = await PDFDocument.load(await readFile(input));
+      const form = pdfDoc.getForm();
+      const nf = 10;
+    
+      for (let i = 1; i <= nf; i++) {
+        form.getTextField(i.toString()).setText(data['name' + i]);
+      }
+
+      const pdfBytes = await pdfDoc.save();
+  
+      await writeFile(output, pdfBytes);
+      console.log('PDF created!');
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  try {
+    const outputPdfBuffer = createPdf('Rental.pdf', 'output2.pdf', {
+      name1,
+      name2,
+      name3,
+      name4,
+      name5,
+      name6,
+      name7,
+      name8,
+      name9,
+      name10,
+    });
+
+    res.status(200).send('PDF created successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('PDF creation failed');
+  }
+
+});
+
+app.post("/fill3",(req,res)=>{
+  const name1 = req.body.name1;
+  const name2 = req.body.name2;
+  const name3 = req.body.name3;
+  const name4 = req.body.name4;
+  const name5 = req.body.name5;
+  const name6 = req.body.name6;
+  const name7 = req.body.name7;
+
+  async function createPdf(input, output, data) {
+    try {
+      const pdfDoc = await PDFDocument.load(await readFile(input));
+      const form = pdfDoc.getForm();
+      const nf = 7;
+    
+      for (let i = 1; i <= nf; i++) {
+        form.getTextField(i.toString()).setText(data['name' + i]);
+      }
+
+      const pdfBytes = await pdfDoc.save();
+  
+      await writeFile(output, pdfBytes);
+      console.log('PDF created!');
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  try {
+    const outputPdfBuffer = createPdf('NDA.pdf', 'output3.pdf', {
+      name1,
+      name2,
+      name3,
+      name4,
+      name5,
+      name6,
+      name7,
+    });
+
+    res.status(200).send('PDF created successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('PDF creation failed');
+  }
+
+});
+
+app.get("/download1",(req,res)=>{
+  const filePath = path.join(__dirname, '/', 'output1.pdf');
+  res.download(filePath, (err) => {
+    if (err) {
+      // Handle errors, such as file not found
+      console.error(`Error downloading the file: ${err.message}`);
+      res.status(404).send('File not found');
+    } else {
+      console.log('File downloaded successfully');
+    }
+  });
+});
+
+app.get("/download2",(req,res)=>{
+  const filePath = path.join(__dirname, '/', 'output2.pdf');
+  res.download(filePath, (err) => {
+    if (err) {
+      // Handle errors, such as file not found
+      console.error(`Error downloading the file: ${err.message}`);
+      res.status(404).send('File not found');
+    } else {
+      console.log('File downloaded successfully');
+    }
+  });
+});
+
+app.get("/download3",(req,res)=>{
+  const filePath = path.join(__dirname, '/', 'output3.pdf');
   res.download(filePath, (err) => {
     if (err) {
       // Handle errors, such as file not found

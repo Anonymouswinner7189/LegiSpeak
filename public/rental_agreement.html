@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--<title>Registration Form in HTML CSS</title>-->
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="agreement.css" />
+    
+  </head>
+  <body>
+    <section class="container">
+      <header>Rental Agreement</header>
+      <form action="/fill2" method="post" class="form" >
+        <div class="input-box">
+          <label>Full Name</label>
+          <input type="text"  id="name1" name="name1" placeholder="Enter Name of the Owner" required />
+        </div>
+
+        <div class="input-box address">
+          <label>Owner address</label>
+          <input type="text" id="name2" name="name2" placeholder="Enter permanent address" required />
+        </div>
+
+        <div class="input-box">
+            <label>Full Name</label>
+            <input type="text" id="name3" name="name3" placeholder="Enter Name of the Tenant" required />
+          </div>
+
+        <div class="input-box address">
+            <label>Address of Tenant</label>
+            <input type="text" id="name4" name="name4" placeholder="Enter Address of the Office/Institution of the Tenant" required />
+        </div>
+          
+        <div class="input-box">
+          <label>Tenant's Permanent Address</label>
+          <input type="text" id="name5" name="name5" placeholder="Enter Permanent Address of the Tenant" required />
+        </div>
+
+        <div class="column">
+            <div class="input-box">
+                <label>Start Date</label>
+                <input type="date" id="name6" name="name6" placeholder="Enter Starting date of the agreement " required />
+              </div>
+            <div class="input-box">
+              <label>Expiry Date</label>
+              <input type="date" id="name7" name="name7" placeholder="Enter Expiry date of the agreement " required />
+            </div>
+        </div>
+        <div class="input-box">
+            <label>Monthly Rent</label>
+            <input type="number" id="name8" name="name8" placeholder="Enter Monthly Rent in Rs." required />
+          </div>
+
+          <div class="input-box">
+            <label>Monthly Maintenance Charge</label>
+            <input type="number" id="name9" name="name9" placeholder="Enter Monthly Maintenance Charge in Rs." required />
+          </div>
+
+          <div class="input-box">
+            <label>Security Deposit</label>
+            <input type="number" id="name10" name="name10" placeholder="Enter Security Deposit in Rs." required />
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+      <form action="/download2" method="get" class="form">
+        <button type="submit" id="downloadBtn" class="hidden">Download</button>
+      </form>
+      
+    </section>
+    
+  </body>
+</html>

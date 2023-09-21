@@ -12,7 +12,7 @@
   <body>
     <section class="container">
       <header>Will Agreement</header>
-      <form action="/fill" method="post" class="form">
+      <form action="/fill1" method="post" class="form">
         <div class="input-box">
           <label>Full Name</label>
           <input
@@ -29,6 +29,7 @@
           <input
             type="text"
             id="name2"
+            name="name2"
             placeholder="Enter Father's Name"
             required
           />
@@ -39,6 +40,7 @@
           <input
             type="text"
             id="name3"
+            name="name3"
             placeholder="Enter your address"
             required
           />
@@ -46,7 +48,7 @@
 
         <div class="input-box">
           <label>Your Age</label>
-          <input type="number" id="name4" placeholder="Enter Age" required />
+          <input type="number" id="name4" name="name4" placeholder="Enter Age" required />
         </div>
 
         <div class="input-box">
@@ -54,6 +56,7 @@
           <input
             type="text"
             id="name5"
+            name="name5"
             placeholder="Enter Name of the executor of the will"
             required
           />
@@ -64,6 +67,7 @@
           <input
             type="text"
             id="name6"
+            name="name6"
             placeholder="Name of the parent of the executor "
             required
           />
@@ -74,6 +78,7 @@
           <input
             type="text"
             id="name7"
+            name="name7"
             placeholder="Enter executor's address"
             required
           />
@@ -84,6 +89,7 @@
           <input
             type="number"
             id="name8"
+            name="name8"
             placeholder="Enter executer's Age"
             required
           />
@@ -95,17 +101,18 @@
             <input
               type="text"
               id="name9"
+              name="name9"
               placeholder="Enter property"
               required
             />
           </div>
           <div class="input-box">
             <label>(b)</label>
-            <input type="text" id="name10" placeholder="Enter property" />
+            <input type="text" id="name10" name="name10" placeholder="Enter property" />
           </div>
           <div class="input-box">
             <label>(c)</label>
-            <input type="text" id="name11" placeholder="Enter property" />
+            <input type="text" id="name11" name="name11" placeholder="Enter property" />
           </div>
         </div>
         <div class="input-box">
@@ -113,6 +120,7 @@
           <input
             type="text"
             id="name12"
+            name="name12"
             placeholder="Enter Your Wife's Name"
             required
           />
@@ -125,6 +133,7 @@
             <input
               type="text"
               id="name13"
+              name="name13"
               placeholder="Enter blank(-) if you would like to leave the field empty"
               required
             />
@@ -134,15 +143,15 @@
             <input
               type="text"
               id="name14"
+              name="name14"
               placeholder="Enter blank(-) if you would like to leave the field empty"
             />
           </div>
         </div>
 
         <button type="submit" id="submitBtn">Submit</button>
-        
       </form>
-      <form action="/download" method="get" class="form">
+      <form action="/download1" method="get" class="form">
         <button type="submit" id="downloadBtn" class="hidden">Download</button>
       </form>
     </section>
