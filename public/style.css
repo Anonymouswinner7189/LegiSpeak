@@ -7,7 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background: #E3F2FD;
+  background: #f2ecbe;
 }
 .chatbot-toggler {
   position: fixed;
@@ -281,3 +281,40 @@ header.sticky-header {
   font-family: 'Croissant One', cursive;
 }
 hr{color:#7D7C7C;}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #65451F;
+  --bs-btn-border-color: #65451F;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #65451F;
+  --bs-btn-hover-border-color: #65451F;
+  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #65451F;
+  --bs-btn-active-border-color: #65451F;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #65451F;
+  --bs-btn-disabled-border-color: #65451F;}
+
+
+
+
+  .nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: #65451F;
+    --bs-nav-link-hover-color: #65451F;
+    --bs-nav-link-disabled-color: #65451F;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;}
+
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+      color: var(--bs-nav-pills-link-active-color);
+      background-color:#65451F;
+}

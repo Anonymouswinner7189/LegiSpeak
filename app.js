@@ -13,7 +13,7 @@ const path = require('path');
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 import("node-fetch").then((nodeFetch) => {
@@ -80,7 +80,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
       // ocrResult.save();
       const fun = async (data) => {
         const prompt =
-          "Please simplify this legal document for me, as if you were a lawyer. Make it easy to understand for someone without legal knowledge. Explain any difficult words, and clarify the document's purpose and consequences using concise language. Summarise in 250 words.";
+          "Please simplify this legal document for me, as if you were a lawyer. Make it easy to understand for someone without legal knowledge. Explain any difficult words, and clarify the document's purpose and consequences using concise language. Summarise in 200 words.";
       
         // const prompt = "Simplify the sentences of this given text.Summarise in 250 words."
       
@@ -89,10 +89,10 @@ app.post("/upload", upload.single("file"), (req, res) => {
         const chatCompletion = await openai.chat.completions.create({
           model: "gpt-3.5-turbo",
           messages: [{ role: "user", content: prompt + "\n" + userInput }],
-          max_tokens: 1000,
+          max_tokens: 400,
         });
       
-        res.render("list",{title: "Summarized Document",summary : chatCompletion.choices[0].message.content});
+        res.render("list",{title: "Summarized Document",summary : chatCompletion.choices[0].message.content,para : "Making a document easier to understand, read, and comprehend while retaining its essential meaning and message."});
       };
 
       fun(data);
@@ -142,7 +142,7 @@ app.post("/translate", upload.single("file"), (req, res) => {
           max_tokens: 1000,
         });
       
-        res.render("list",{title: "Translated Document",summary : chatCompletion.choices[0].message.content});
+        res.render("list",{title: "Translated Document",summary : chatCompletion.choices[0].message.content+".",para : "Translates the text from one language to the other while preserving the meaning and intent of the original content."});
       };
 
       fun(data);

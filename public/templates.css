@@ -1,20 +1,24 @@
 body {
-    background: #E3F2FD;
-  }
+  background: #f2ecbe;
+}
 
-  /* Styles for sticky header */
+/* Styles for sticky header */
 header.sticky-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: white; /* Adjust as needed */
-    z-index: 100;
-    transition: background-color 0.3s ease; /* Optional: Add a smooth background color transition */
-  }
-  
-  /* Adjust the header appearance when it's sticky */
-  header.sticky-header a {
-    color: #333; /* Change link color when sticky if needed */
-    /* Add any other styles you want for the sticky header */
-  }
-  
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white; /* Adjust as needed */
+  z-index: 100;
+  transition: background-color 0.3s ease; /* Optional: Add a smooth background color transition */
+}
+
+/* Adjust the header appearance when it's sticky */
+header.sticky-header a {
+  color: #333; /* Change link color when sticky if needed */
+  /* Add any other styles you want for the sticky header */
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: var(--bs-nav-pills-link-active-color);
+  background-color:#65451F;
+}

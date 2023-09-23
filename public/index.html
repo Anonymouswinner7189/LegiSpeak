@@ -22,17 +22,17 @@
 <header class=" d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
   <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
     <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-    <img src="/images/pacific_logo.png" alt="logo" width="100" height="90" class="me-4">
+    <img src="/images/logo.png" alt="logo" width="100" height="60" class="me-4" border-radius="1.90rem";>
     <span class="fs-4">LegiSpeak</span>
   </a>
   <nav class="nav">
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="#section--1" class="nav-link active " aria-current="page">Home</a></li>
-      <li class="nav-item"><a href="#section--A" class="nav-link ">Templates</a></li>
-      <li class="nav-item"><a href="#section--B" class="nav-link ">Translate </a></li>
-      <li class="nav-item"><a href="#section--C" class="nav-link ">Simplify</a></li>
-      <li class="nav-item"><a href="#section--D" class="nav-link ">Text-to-Speech</a></li>
-      <li class="nav-item"><a href="#section--E" class="nav-link ">Database</a></li>
+      <li class="nav-item"><a href="#section--1" class="nav-link " data-target="section--1">Home</a></li>
+      <li class="nav-item"><a href="#section--A" class="nav-link " data-target="section--A">Templates</a></li>
+      <li class="nav-item"><a href="#section--B" class="nav-link " data-target="section--B">Translate </a></li>
+      <li class="nav-item"><a href="#section--C" class="nav-link " data-target="section--C">Simplify</a></li>
+      <li class="nav-item"><a href="#section--D" class="nav-link " data-target="section--D">Text-to-Speech</a></li>
+      <li class="nav-item"><a href="#section--E" class="nav-link " data-target="section--E">Database</a></li>
     </ul>
   </nav>
 </header>
@@ -40,8 +40,8 @@
 
 <!---HEADER SECTION-->
 <div class=" px-4 py-5 my-5 text-center">
-  <img class="d-block mx-auto mb-4" src="/images/pacific_logo.png" alt="" width="130" height="120">
-  <h1 class=" title display-5 fw-bold">LegiSpeak: Redefining legal realms with AI</h1>
+  <img class="d-block mx-auto mb-4" src="/images/logo.png" alt="" width="200" height="120">
+  <h1 class=" title display-5 fw-bold">LegiSpeak: Redefining legal realms with AI</h1>
   <div class="col-lg-6 mx-auto">
     <p class="lead mb-4">Create, Understand, and Manage legal documents with Ease</p>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -69,7 +69,6 @@
           <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Formatting Assistance with Templates</h1>
           <ol class="lead" style="list-style-type: disc;">
             <li>Provides document formatting assistance with templates</li>
-            <li>You can add more items here as needed.</li>
           </ol>
           <form action="/templates" method="post">
             <button type="submit" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="7hyqil">Explore</button>
@@ -91,7 +90,6 @@
           <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Language Identification & Translation</h1>
           <ol class="lead" style="list-style-type: disc;">
             <li>Converts complex language to plain terms , offers translations in Kannada, Hindi, and English</li>
-            <li>You can add more items here as needed.</li>
           </ol>
           <form action="/translate" method="post" enctype="multipart/form-data">
             <input type="file" class="file" name="file">
@@ -122,7 +120,6 @@
           <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Document Simplification & Recognition</h1>
           <ol class="lead" style="list-style-type: disc;">
             <li>OCR-based document recognition , automatic language identification</li>
-            <li>You can add more items here as needed.</li>
           </ol>
           <form action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" class="file" name="file">
@@ -142,8 +139,7 @@
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Text to Speech</h1>
           <ol class="lead" style="list-style-type: disc;"> <!-- Use disc style for bullet points -->
-            <li>OCR-based document recognition , automatic language identification.</li>
-            <li>You can add more items here as needed.</li>
+            <li>Converts written text into spoken words, allowing users to listen to content rather than reading it</li>
           </ol>
           <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="7hyqil">Explore</button>
         </div>
@@ -161,8 +157,8 @@
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Database</h1>
         <ol class="lead" style="list-style-type: disc;">
-          <li>OCR-based document recognition , automatic language identification</li>
-          <li>You can add more items here as needed.</li>
+          <li>Access to Indian legal databases.</li>
+          <li>Find case files in a blink with browser redirection to accurate data.</li>
         </ol>
         <form action="C:\Users\mahaj\OneDrive\Desktop\SIH2023\movie-ranking.html">
         <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="7hyqil">Explore</button></form>
@@ -353,6 +349,31 @@
       observer.observe(section);
     });
   </script>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // Add click event listeners to each navigation link
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      // Prevent the default link behavior
+      event.preventDefault();
+
+      // Remove the "active" class from all links
+      navLinks.forEach((navLink) => {
+        navLink.classList.remove('active');
+      });
+
+      // Add the "active" class to the clicked link
+      link.classList.add('active');
+
+      // Scroll to the target section
+      const targetId = link.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+      targetSection.scrollIntoView({ behavior: 'smooth'});
+    });
+  });
+</script>
 
   <!-- Add this script tag before the closing </body> tag -->
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
